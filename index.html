@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MGhost Gaming Finger Sleeves - صوابع الجيمينج</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body class="dark-mode">
+    <!-- شاشة الترحيب -->
+    <div id="splash-screen" class="splash-screen">
+        <div class="splash-content">
+            <h1 class="splash-text">صوابع MGhost</h1>
+            <div class="loader"></div>
+            <div class="splash-progress">
+                <div class="splash-progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- الإعدادات -->
+    <div class="settings-container">
+        <button id="settings-btn" class="settings-btn">
+            <i class="fas fa-cog"></i>
+        </button>
+        <div id="settings-panel" class="settings-panel">
+            <div class="settings-header">
+                <h3><i class="fas fa-cog"></i> الإعدادات</h3>
+                <button class="close-settings">&times;</button>
+            </div>
+            <div class="settings-option">
+                <h4><i class="fas fa-globe"></i> اللغة</h4>
+                <select id="language-select" class="language-select">
+                    <option value="ar">العربية</option>
+                    <option value="en">English</option>
+                    <option value="other">All Languages</option>
+                </select>
+            </div>
+            <div class="settings-option">
+                <h4><i class="fas fa-moon"></i> المظهر</h4>
+                <div class="theme-toggle">
+                    <button class="theme-btn active" data-theme="dark">
+                        <i class="fas fa-moon"></i> داكن
+                    </button>
+                    <button class="theme-btn" data-theme="light">
+                        <i class="fas fa-sun"></i> فاتح
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- سلة المشتريات -->
+    <button id="cart-btn" class="cart-btn">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cart-count" class="cart-count">0</span>
+    </button>
+
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-cart"></i> سلة المشتريات</h3>
+            <button class="close-cart">&times;</button>
+        </div>
+        <div class="cart-items">
+            <!-- العناصر تضاف هنا بالجافاسكريبت -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>الإجمالي:</span>
+                <span id="cart-total-price">LE 0.00</span>
+            </div>
+            <button id="checkout-btn" class="checkout-btn">
+                <i class="fas fa-lock"></i> إتمام الشراء
+            </button>
+        </div>
+    </div>
+
+    <!-- الصفحة الرئيسية -->
+    <main class="main-content">
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-grid">
+                    <!-- الجزء الأيسر - الفيديو -->
+                    <div class="hero-video fade-in">
+                        <div class="video-wrapper">
+                            <video id="product-video" autoplay muted loop playsinline poster="images/product1.jpg">
+                                <source src="videos/product.mp4" type="video/mp4">
+                                <source src="videos/product.webm" type="video/webm">
+                                <!-- إذا لم يكن هناك فيديو، استخدم صورة -->
+                                <img src="images/product1.jpg" alt="MGhost Gaming Finger Sleeves">
+                            </video>
+                            <div class="video-overlay"></div>
+                            <button class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- الجزء الأيمن - المعلومات -->
+                    <div class="hero-info">
+                        <div class="product-title slide-up">
+                            <h1>MGhost Gaming Finger Sleeves</h1>
+                            <p class="subtitle">العلبة تحتوي على زوجين (4 أصابع)</p>
+                        </div>
+
+                        <div class="product-rating slide-up">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-text">(4.8 من 5 - 156 تقييم)</span>
+                        </div>
+
+                        <div class="product-description slide-up">
+                            <p>🎮 <strong>صوابع احترافية للجيمينج</strong> - تحكم دقيق، حماية مطلقة، وأداء فائق للاعبين المحترفين والمبتدئين.</p>
+                        </div>
+
+                        <div class="features slide-up" style="animation-delay: 0.2s;">
+                            <div class="feature-item">
+                                <i class="fas fa-shipping-fast"></i>
+                                <span>شحن مجاني لفترة محدودة</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>ضمان استرجاع</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fab fa-whatsapp"></i>
+                                <span>دعم سريع عبر واتساب</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-truck-fast"></i>
+                                <span>توصيل سريع خلال 24-48 ساعة</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-bolt"></i>
+                                <span>الكمية محدودة – إلحق العرض</span>
+                            </div>
+                        </div>
+
+                        
+                        <div class="pricing slide-up" style="animation-delay: 0.4s;">
+                            <div class="original-price">
+                                السعر العادي: <span>LE 399.00</span>
+                            </div>
+                            <div class="current-price">
+                                السعر: <span>LE 399.00</span>
+                            </div>
+                        </div>
+
+                        <div class="quantity-selector slide-up" style="animation-delay: 0.6s;">
+                            <div class="quantity-label">الكمية:</div>
+                            <div class="quantity-controls">
+                                <button class="qty-btn minus" id="qty-minus" aria-label="تقليل الكمية">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <div class="quantity-input-wrapper">
+                                    <input type="number" id="quantity" class="quantity-input" value="1" min="1" max="10" readonly>
+                                </div>
+                                <button class="qty-btn plus" id="qty-plus" aria-label="زيادة الكمية">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="total-price slide-up" style="animation-delay: 0.7s;">
+                            <span>السعر الإجمالي:</span>
+                            <span id="total-price">LE 399.00</span>
+                        </div>
+
+                        <div class="action-buttons slide-up" style="animation-delay: 0.8s;">
+                            <button id="add-to-cart" class="add-cart-btn">
+                                <i class="fas fa-cart-plus"></i>
+                                أضف إلى السلة
+                            </button>
+                            <button id="buy-now" class="buy-btn pulse">
+                                <i class="fas fa-bolt"></i>
+                                شراء الآن
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم الصور -->
+        <section class="gallery-section">
+            <!-- قسم الصور الإضافية -->
+<
+        
+        <!-- يمكنك إضافة المزيد حسب عدد الصور لديك -->
+        <div class="more-photos-note">
+            <p>📸 <strong>ملاحظة:</strong> يمكنك إضافة المزيد من الصور في مجلد <code>images/</code></p>
+        </div>
+    </div>
+</section>
+            <div class="container">
+                <h2 class="section-title">معرض المنتج</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item scroll-animate">
+                        <img src="images/product.jpg" alt="MGhost Gaming Finger Sleeves - أسود" loading="lazy">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item scroll-animate">
+                        <img src="images/product2.jpg" alt="MGhost Gaming Finger Sleeves - أزرق" loading="lazy">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item scroll-animate">
+                        <img src="images/product3.jpg" alt="MGhost Gaming Finger Sleeves - أحمر" loading="lazy">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item scroll-animate">
+                        <img src="images/product4.jpg" alt="MGhost Gaming Finger Sleeves - أخضر" loading="lazy">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- نافذة إتمام الشراء -->
+    <div id="checkout-modal" class="checkout-modal">
+        <div class="checkout-content">
+            <div class="checkout-header">
+                <h2><i class="fas fa-lock"></i> إتمام الشراء</h2>
+                <button class="close-checkout">&times;</button>
+            </div>
+            
+            <div class="checkout-body">
+                <form id="checkout-form">
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope"></i> البريد الإلكتروني أو رقم الهاتف</label>
+                        <input type="text" id="email" required placeholder="example@email.com أو 01012345678">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="first-name"><i class="fas fa-user"></i> الاسم الأول</label>
+                            <input type="text" id="first-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name"><i class="fas fa-user"></i> اسم العائلة</label>
+                            <input type="text" id="last-name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address"><i class="fas fa-home"></i> العنوان</label>
+                        <input type="text" id="address" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city"><i class="fas fa-city"></i> المدينة</label>
+                            <input type="text" id="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone"><i class="fas fa-phone"></i> الهاتف</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-methods">
+                        <h3><i class="fas fa-credit-card"></i> طرق الدفع</h3>
+                        <div class="payment-options">
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="instapay" checked>
+                                <div class="payment-card">
+                                    <i class="fas fa-bolt"></i>
+                                    <span>InstaPay</span>
+                                </div>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="vcash">
+                                <div class="payment-card">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <span>vCash</span>
+                                </div>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="ecash">
+                                <div class="payment-card">
+                                    <i class="fas fa-wallet"></i>
+                                    <span>eCash</span>
+                                </div>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="ocash">
+                                <div class="payment-card">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                    <span>oCash</span>
+                                </div>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="wcash">
+                                <div class="payment-card">
+                                    <i class="fab fa-whatsapp"></i>
+                                    <span>wCash</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="security-message">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>جميع المعاملات آمنة ومشفرة</span>
+                    </div>
+                    
+                    <button type="submit" class="submit-order-btn">
+                        <i class="fas fa-check-circle"></i> تأكيد الطلب
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة تكبير الصور -->
+    <div id="image-modal" class="image-modal">
+        <div class="image-modal-content">
+            <button class="close-image-modal">&times;</button>
+            <img id="modal-image" src="" alt="">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
