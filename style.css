@@ -193,6 +193,35 @@ body.light-mode {
     }
 }
 
+/* تحسين إضافي للاستجابة على الأجهزة المحمولة */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 2rem 0;
+    }
+    .hero-video {
+        order: -1; /* وضع الفيديو أعلى المحتوى على الهواتف */
+        border-radius: 14px;
+    }
+    .video-wrapper video, .video-wrapper img {
+        height: 260px;
+    }
+    .product-title h1 {
+        font-size: 1.6rem;
+    }
+    .subtitle {
+        font-size: 0.95rem;
+    }
+    .action-buttons { flex-direction: column; }
+    .add-cart-btn, .buy-btn { width: 100%; }
+}
+
+@media (max-width: 480px) {
+    .video-wrapper video, .video-wrapper img { height: 200px; }
+    .gallery-item img { height: 180px; }
+    .play-btn { width: 48px; height: 48px; font-size: 1.1rem; }
+    .qty-btn { width: 44px; height: 44px; }
+}
+
 .hero-video {
     position: relative;
     border-radius: 20px;

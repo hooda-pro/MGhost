@@ -78,28 +78,120 @@ function initializeSettings() {
 
     // تحميل المظهر المحفوظ
     loadSavedTheme();
+    // ضبط قيمة اختيار اللغة المحفوظة وتطبيق الترجمات
+    const savedLang = localStorage.getItem('language') || 'ar';
+    const languageSelectEl = document.getElementById('language-select');
+    if (languageSelectEl) languageSelectEl.value = savedLang;
+    applyTranslations(savedLang);
+}
+
+// ==================== ترجمات بسيطة ====================
+const translations = {
+    ar: {
+        'product.title': 'MGhost Gaming Finger Sleeves',
+        'product.subtitle': 'العلبة تحتوي على زوجين (4 أصابع)',
+        'feature.shipping': 'شحن مجاني لفترة محدودة',
+        'feature.guarantee': 'ضمان استرجاع',
+        'feature.whatsapp': 'دعم سريع عبر واتساب',
+        'feature.delivery': 'توصيل سريع خلال 24-48 ساعة',
+        'feature.limited': 'الكمية محدودة – إلحق العرض',
+        'pricing.original_label': 'السعر العادي:',
+        'pricing.original_value': 'LE 399.00',
+        'pricing.current_label': 'السعر:',
+        'pricing.current_value': 'LE 399.00',
+        'ui.quantity_label': 'الكمية:',
+        'pricing.total_label': 'السعر الإجمالي:',
+        'ui.add_to_cart': 'أضف إلى السلة',
+        'ui.buy_now': 'شراء الآن',
+        'settings.title': 'الإعدادات',
+        'cart.empty': 'سلة المشتريات فارغة\nأضف منتجات لتظهر هنا',
+        'checkout.title': 'إتمام الشراء',
+        'checkout.confirm': 'تأكيد الطلب',
+        'security.message': 'جميع المعاملات آمنة ومشفرة'
+    },
+    en: {
+        'product.title': 'MGhost Gaming Finger Sleeves',
+        'product.subtitle': 'Box contains 2 pairs (4 fingers)',
+        'feature.shipping': 'Free shipping (limited time)',
+        'feature.guarantee': 'Money-back guarantee',
+        'feature.whatsapp': 'Fast WhatsApp support',
+        'feature.delivery': 'Fast delivery within 24-48h',
+        'feature.limited': 'Limited stock — grab the offer',
+        'pricing.original_label': 'Regular price:',
+        'pricing.original_value': 'LE 399.00',
+        'pricing.current_label': 'Price:',
+        'pricing.current_value': 'LE 399.00',
+        'ui.quantity_label': 'Quantity:',
+        'pricing.total_label': 'Total price:',
+        'ui.add_to_cart': 'Add to cart',
+        'ui.buy_now': 'Buy now',
+        'settings.title': 'Settings',
+        'cart.empty': 'Your cart is empty\nAdd products to see them here',
+        'checkout.title': 'Checkout',
+        'checkout.confirm': 'Confirm Order',
+        'security.message': 'All transactions are secure and encrypted'
+    }
+};
+
+function getTranslation(key, lang) {
+    lang = lang || (localStorage.getItem('language') || 'ar');
+    if (translations[lang] && translations[lang][key]) return translations[lang][key];
+    // fallback to English
+    if (translations['en'] && translations['en'][key]) return translations['en'][key];
+    return null;
+}
+
+function applyTranslations(lang) {
+    if (!lang) lang = localStorage.getItem('language') || 'ar';
+    const nodes = document.querySelectorAll('[data-i18n]');
+    nodes.forEach(node => {
+        const key = node.getAttribute('data-i18n');
+        const text = getTranslation(key, lang);
+        if (text) {
+            // preserve inner icons if any — replace only text nodes
+            if (node.children.length === 0) {
+                node.textContent = text;
+            } else {
+                // if there are child nodes (like icons), replace last text node
+                // simple approach: set innerText but preserve HTML of child icons
+                const icons = node.querySelectorAll('i');
+                node.textContent = text;
+                icons.forEach((ic, idx) => { node.prepend(ic); });
+            }
+        }
+    });
+
+    // update cart empty message if cart empty
+    const cartItemsContainer = document.querySelector('.cart-items');
+    if (cart && cart.length === 0 && cartItemsContainer) {
+        const emptyText = getTranslation('cart.empty', lang).split('\n');
+        cartItemsContainer.innerHTML = `\n            <div class="cart-empty">\n                <i class="fas fa-shopping-cart"></i>\n                <p>${emptyText[0]}</p>\n                <p>${emptyText[1]}</p>\n            </div>\n        `;
+    }
 }
 
 // تغيير اللغة
 function changeLanguage(lang) {
     const html = document.documentElement;
+
+    // if user selected 'other', try to use browser language, fallback to 'en'
+    if (lang === 'other') {
+        const browserLang = (navigator.language || navigator.userLanguage || 'en').split('-')[0];
+        lang = translations[browserLang] ? browserLang : 'en';
+        showNotification('Language: ' + (lang === 'ar' ? 'العربية' : 'English'));
+    }
+
     html.setAttribute('lang', lang);
-    
+
     if (lang === 'ar') {
         html.setAttribute('dir', 'rtl');
         document.title = 'MGhost Gaming Finger Sleeves - صوابع الجيمينج';
-        showNotification('تم تغيير اللغة إلى العربية');
-    } else if (lang === 'en') {
-        html.setAttribute('dir', 'ltr');
-        document.title = 'MGhost Gaming Finger Sleeves';
-        showNotification('Language changed to English');
     } else {
         html.setAttribute('dir', 'ltr');
         document.title = 'MGhost Gaming Finger Sleeves';
-        showNotification('Language changed');
     }
-    
+
     localStorage.setItem('language', lang);
+    applyTranslations(lang);
 }
 
 // تغيير المظهر
@@ -238,11 +330,14 @@ function updateCartDisplay() {
     
     // إذا السلة فارغة
     if (cart.length === 0) {
+        const emptyText = getTranslation('cart.empty');
+        let lines = ['سلة المشتريات فارغة', 'أضف منتجات لتظهر هنا'];
+        if (emptyText) lines = emptyText.split('\n');
         cartItemsContainer.innerHTML = `
             <div class="cart-empty">
                 <i class="fas fa-shopping-cart"></i>
-                <p>سلة المشتريات فارغة</p>
-                <p>أضف منتجات لتظهر هنا</p>
+                <p>${lines[0]}</p>
+                <p>${lines[1] || ''}</p>
             </div>
         `;
         cartTotalPrice.textContent = 'LE 0.00';
@@ -485,26 +580,29 @@ function initializeCheckout() {
 
 // ==================== 7. الأنيميشنات ====================
 function initializeAnimations() {
-    // أنيميشنات العناصر عند التمرير
-    const animateOnScroll = function() {
-        const elements = document.querySelectorAll('.scroll-animate');
-        
-        elements.forEach(element => {
-            const elementPosition = element.getBoundingClientRect().top;
-            const screenPosition = window.innerHeight / 1.2;
-            
-            if (elementPosition < screenPosition) {
-                element.classList.add('animate');
-            }
-        });
+    // استخدام IntersectionObserver لأنيميشنات التمرير لأداء أفضل
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
     };
 
-    // تشغيل عند التحميل والتمرير
-    window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll();
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+                obs.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
 
     // تحديث عداد الزوار
     updateVisitorCounter();
+
+    // تأكد من تطبيق الترجمات الحالية بعد تهيئة الأنيميشنات
+    applyTranslations(localStorage.getItem('language') || 'ar');
 }
 
 // تحديث عداد الزوار

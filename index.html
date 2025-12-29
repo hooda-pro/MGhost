@@ -29,7 +29,7 @@
         </button>
         <div id="settings-panel" class="settings-panel">
             <div class="settings-header">
-                <h3><i class="fas fa-cog"></i> الإعدادات</h3>
+                <h3><i class="fas fa-cog"></i> <span data-i18n="settings.title">الإعدادات</span></h3>
                 <button class="close-settings">&times;</button>
             </div>
             <div class="settings-option">
@@ -103,8 +103,8 @@
                     <!-- الجزء الأيمن - المعلومات -->
                     <div class="hero-info">
                         <div class="product-title slide-up">
-                            <h1>MGhost Gaming Finger Sleeves</h1>
-                            <p class="subtitle">العلبة تحتوي على زوجين (4 أصابع)</p>
+                            <h1 data-i18n="product.title">MGhost Gaming Finger Sleeves</h1>
+                            <p class="subtitle" data-i18n="product.subtitle">العلبة تحتوي على زوجين (4 أصابع)</p>
                         </div>
 
                         <div class="product-rating slide-up">
@@ -125,38 +125,38 @@
                         <div class="features slide-up" style="animation-delay: 0.2s;">
                             <div class="feature-item">
                                 <i class="fas fa-shipping-fast"></i>
-                                <span>شحن مجاني لفترة محدودة</span>
+                                <span data-i18n="feature.shipping">شحن مجاني لفترة محدودة</span>
                             </div>
                             <div class="feature-item">
                                 <i class="fas fa-shield-alt"></i>
-                                <span>ضمان استرجاع</span>
+                                <span data-i18n="feature.guarantee">ضمان استرجاع</span>
                             </div>
                             <div class="feature-item">
                                 <i class="fab fa-whatsapp"></i>
-                                <span>دعم سريع عبر واتساب</span>
+                                <span data-i18n="feature.whatsapp">دعم سريع عبر واتساب</span>
                             </div>
                             <div class="feature-item">
                                 <i class="fas fa-truck-fast"></i>
-                                <span>توصيل سريع خلال 24-48 ساعة</span>
+                                <span data-i18n="feature.delivery">توصيل سريع خلال 24-48 ساعة</span>
                             </div>
                             <div class="feature-item">
                                 <i class="fas fa-bolt"></i>
-                                <span>الكمية محدودة – إلحق العرض</span>
+                                <span data-i18n="feature.limited">الكمية محدودة – إلحق العرض</span>
                             </div>
                         </div>
 
                         
                         <div class="pricing slide-up" style="animation-delay: 0.4s;">
                             <div class="original-price">
-                                السعر العادي: <span>LE 399.00</span>
+                                <span data-i18n="pricing.original_label">السعر العادي:</span> <span data-i18n="pricing.original_value">LE 399.00</span>
                             </div>
                             <div class="current-price">
-                                السعر: <span>LE 399.00</span>
+                                <span data-i18n="pricing.current_label">السعر:</span> <span data-i18n="pricing.current_value">LE 399.00</span>
                             </div>
                         </div>
 
                         <div class="quantity-selector slide-up" style="animation-delay: 0.6s;">
-                            <div class="quantity-label">الكمية:</div>
+                            <div class="quantity-label" data-i18n="ui.quantity_label">الكمية:</div>
                             <div class="quantity-controls">
                                 <button class="qty-btn minus" id="qty-minus" aria-label="تقليل الكمية">
                                     <i class="fas fa-minus"></i>
@@ -171,16 +171,16 @@
                         </div>
 
                         <div class="total-price slide-up" style="animation-delay: 0.7s;">
-                            <span>السعر الإجمالي:</span>
+                            <span data-i18n="pricing.total_label">السعر الإجمالي:</span>
                             <span id="total-price">LE 399.00</span>
                         </div>
 
                         <div class="action-buttons slide-up" style="animation-delay: 0.8s;">
-                            <button id="add-to-cart" class="add-cart-btn">
+                            <button id="add-to-cart" class="add-cart-btn" data-i18n="ui.add_to_cart">
                                 <i class="fas fa-cart-plus"></i>
                                 أضف إلى السلة
                             </button>
-                            <button id="buy-now" class="buy-btn pulse">
+                            <button id="buy-now" class="buy-btn pulse" data-i18n="ui.buy_now">
                                 <i class="fas fa-bolt"></i>
                                 شراء الآن
                             </button>
