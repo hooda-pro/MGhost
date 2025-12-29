@@ -57,6 +57,27 @@ html {
     scroll-behavior: smooth;
 }
 
+/* منع تحديد النص في العناصر العامة (مع السماح بالادخال في الحقول) */
+body *:not(input):not(textarea):not(select) {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* ازالة الإطار الأزرق أو تأثير اللمس على الأزرار والروابط على الجوال */
+button, a, .qty-btn, .add-cart-btn, .buy-btn, .settings-btn, .cart-btn, .close-settings, .close-cart, .close-checkout {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* نضيف تأثير تركيز بديل للوصولية (عند الحاجة)، لكن بشكل خفيف */
+button:focus, a:focus {
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.12);
+}
+
 body {
     font-family: var(--font-arabic);
     line-height: 1.6;
@@ -1336,7 +1357,7 @@ body.light-mode .payment-card {
     
     .cart-btn {
         top: var(--spacing-sm);
-        right: var(--spasing-sm);
+        right: var(--spacing-sm);
     }
     
     .qty-btn {

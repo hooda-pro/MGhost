@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/avif" href="images/coce.avif">
+    <link rel="apple-touch-icon" href="images/coce.avif">
 </head>
 <body class="dark-mode">
     <!-- شاشة الترحيب -->
@@ -89,8 +90,8 @@
                             <video id="product-video" autoplay muted loop playsinline poster="images/product1.jpg">
                                 <source src="videos/product.mp4" type="video/mp4">
                                 <source src="videos/product.webm" type="video/webm">
-                                <!-- إذا لم يكن هناك فيديو، استخدم صورة -->
-                                <img src="images/product1.jpg" alt="MGhost Gaming Finger Sleeves">
+                                <!-- المتصفح لا يدعم الفيديو -->
+                                المتصفح لا يدعم تشغيل الفيديو.
                             </video>
                             <div class="video-overlay"></div>
                             <button class="play-btn">
@@ -191,20 +192,11 @@
 
         <!-- قسم الصور -->
         <section class="gallery-section">
-            <!-- قسم الصور الإضافية -->
-<
-        
-        <!-- يمكنك إضافة المزيد حسب عدد الصور لديك -->
-        <div class="more-photos-note">
-            <p>📸 <strong>صور</strong> الصوابع</p>
-        </div>
-    </div>
-</section>
             <div class="container">
                 <h2 class="section-title">معرض المنتج</h2>
                 <div class="gallery-grid">
                     <div class="gallery-item scroll-animate">
-                        <img src="images/product.jpg" alt="MGhost Gaming Finger Sleeves - أسود" loading="lazy">
+                        <img src="images/product1.jpg" alt="MGhost Gaming Finger Sleeves - أسود" loading="lazy">
                         <div class="gallery-overlay">
                             <i class="fas fa-search-plus"></i>
                         </div>
@@ -221,12 +213,10 @@
                             <i class="fas fa-search-plus"></i>
                         </div>
                     </div>
-                    <div class="gallery-item scroll-animate">
-                        <img src="images/product4.jpg" alt="MGhost Gaming Finger Sleeves - أخضر" loading="lazy">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                    </div>
+                </div>
+
+                <div class="more-photos-note">
+                    <p>📸 <strong>صور</strong> الصوابع</p>
                 </div>
             </div>
         </section>

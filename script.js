@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeGallery();
     initializeCheckout();
     initializeAnimations();
+    checkImages();
     
     // تحديث العداد أول مرة
     updateCartCount();
@@ -576,16 +577,31 @@ function showNotification(message, type = 'info') {
 const productVideo = document.getElementById('product-video');
 const playBtn = document.querySelector('.play-btn');
 
-if (playBtn && productVideo) {
-    playBtn.addEventListener('click', function() {
-        if (productVideo.paused) {
-            productVideo.play();
-            this.innerHTML = '<i class="fas fa-pause"></i>';
-        } else {
-            productVideo.pause();
-            this.innerHTML = '<i class="fas fa-play"></i>';
-        }
+// إذا لم يوجد مصدر فيديو فعلي نخبئ زر التشغيل ونترك الـ poster للصورة
+if (productVideo) {
+    const sources = productVideo.querySelectorAll('source');
+    let hasSource = false;
+    sources.forEach(s => {
+        if (s.src && s.src.trim() !== '') hasSource = true;
     });
+
+    if (!hasSource) {
+        if (playBtn) playBtn.style.display = 'none';
+        productVideo.removeAttribute('autoplay');
+        try { productVideo.pause(); } catch (e) { /* ignore */ }
+    } else {
+        if (playBtn) {
+            playBtn.addEventListener('click', function() {
+                if (productVideo.paused) {
+                    productVideo.play();
+                    this.innerHTML = '<i class="fas fa-pause"></i>';
+                } else {
+                    productVideo.pause();
+                    this.innerHTML = '<i class="fas fa-play"></i>';
+                }
+            });
+        }
+    }
 }
 
 // التحقق من الصور وإضافة صور بديلة إذا لزم
@@ -605,8 +621,4 @@ function checkImages() {
     });
 }
 
-// استدع الدالة في DOMContentLoaded
-document.addEventListener('DOMContentLoaded', function() {
-    // ... الكود السابق
-    checkImages();
-});
+// تم دمج استدعاء checkImages() داخل المستمع الرئيسي لـ DOMContentLoaded أعلاه
